@@ -4,7 +4,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('../db/User.js');
+const User = require('../db/Users.js');
 
 router.get('/signin', (req, res, next) => {
 	//render or redirect

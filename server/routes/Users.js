@@ -1,4 +1,4 @@
-const User = require('./../db/User');
+const User = require('./../db/Users');
 const bcrypt = require('bcrypt');
 
 module.exports.getUsers = (req, res, next) => {
