@@ -9,7 +9,7 @@ const dbConfig = require('../test/db/knex.js');
 const auth = require('./routes/auth.js');
 const app = express();
 const router = require('./routes.js');
-
+const port = process.env.PORT || 8080;
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, '/../client/')));
 //Test for redux
@@ -43,7 +43,7 @@ app.use('/user', express.static(path.join(__dirname, '/../client/')));
 app.use('/api', router);
 app.use('/auth', auth);
 
-app.listen(8080, function() {
+app.listen(port, function() {
 	console.log('listening to 8080');
 });
 
