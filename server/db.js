@@ -1,9 +1,9 @@
-var pitches = require('./Pitches.js');
-var followers = require('./Followers.js');
-var categories = require('./Categories.js');
-var users = require('./Users.js');
-var votes = require('./Votes.js');
-var comments = require('./Comments.js');
+var pitches = require('./db/Pitches.js');
+var followers = require('./db/Followers.js');
+var categories = require('./db/Categories.js');
+var users = require('./db/Users.js');
+var votes = require('./db/Votes.js');
+var comments = require('./db/Comments.js');
 var pg = require('pg');
 var models = require('./db/Models.js');
 // var knex = require('../test/db/knex.js').config;
