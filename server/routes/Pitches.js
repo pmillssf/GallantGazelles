@@ -4,7 +4,7 @@ module.exports.getPitches = (req, res, next) => {
   const { q, pitchId, cat, userId } = req.query;
 
   if (q === 'all') {
-    if(req.session.passport.user) {
+    if(req.session.passport) {
       Pitch.getAllPitches(req.session.passport.user.rows[0].id)
         .then(results => {
           res.status(200).send(results.rows)

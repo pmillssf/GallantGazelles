@@ -20,22 +20,22 @@ const TrendingVideos = (props) => {
               <TrendingVideoCard pitch={props.pitches[0]} />
             </Grid.Column>
             <Grid.Column>
-              <TrendingVideoCard pitch={props.pitches[1]} />
+              <TrendingVideoCard pitch={props.pitches[0]} />
             </Grid.Column>
             <Grid.Column>
-              <TrendingVideoCard pitch={props.pitches[2]} />
+              <TrendingVideoCard pitch={props.pitches[0]} />
             </Grid.Column>
           </Grid.Row>
 
           <Grid.Row>
             <Grid.Column>
-              <TrendingVideoCard pitch={props.pitches[3]} />
+              <TrendingVideoCard pitch={props.pitches[0]} />
             </Grid.Column>
             <Grid.Column>
-              <TrendingVideoCard pitch={props.pitches[4]} />
+              <TrendingVideoCard pitch={props.pitches[0]} />
             </Grid.Column>
             <Grid.Column>
-              <TrendingVideoCard pitch={props.pitches[5]} />
+              <TrendingVideoCard pitch={props.pitches[0]} />
             </Grid.Column>
           </Grid.Row>
         </Grid>
