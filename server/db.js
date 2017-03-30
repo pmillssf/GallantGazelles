@@ -1,18 +1,9 @@
-var pitches = require('./db/Pitches.js');
-var followers = require('./db/Followers.js');
-var categories = require('./db/Categories.js');
-var users = require('./db/User.js');
-var votes = require('./db/Votes.js');
-var comments = require('./db/Comments.js');
 var pg = require('pg');
-var models = require('./db/Models.js');
 // var knex = require('../test/db/knex.js').config;
+var models = require('./db/Models.js');
 
-// var client = new pg.Client(knex.connection);
-// console.log('database: ', knex.connection);
-
+// client = new pg.Client(knex.connection);
 // client.connect();
-
 // module.exports = client;
 
 pg.defaults.ssl = true;
@@ -38,37 +29,6 @@ var client = pg.connect(process.env.DATABASE_URL, function(err, client) {
     .query(models.votesTable);
 });
 
-
-
-users.createUser('User1', '123', 'Profile for User1');
-users.createUser('User2', '123', 'Profile for User2');
-users.createUser('User3', '123', 'Profile for User3');
-
-
-pitches.addPitch(1, 'Pitch 1', 'Pitch 1 Video URL', 'Pitch 1 Website URL', 'Pitch 1 Profile', 'Pitch 1 Blurb', '1');
-pitches.addPitch(2, 'Pitch 2', 'Pitch 2 Video URL', 'Pitch 2 Website URL', 'Pitch 2 Profile', 'Pitch 2 Blurb', '2');
-
-followers.postNewPitchFollower(1, 1);
-followers.postNewPitchFollower(1, 2);
-followers.postNewPitchFollower(2, 2);
-followers.postNewPitchFollower(2, 1);
-
-categories.addCategory('Tech');
-categories.addCategory('Games');
-categories.addCategory('Books');
-categories.addCategory('iPhone');
-categories.addCategory('Android');
-categories.addCategory('Productivity');
-
-votes.voteOnPitch(1, 1, 1);
-votes.voteOnPitch(1, 2, -1);
-votes.voteOnPitch(2, 1, -1);
-votes.voteOnPitch(2, 2, 0);
-
-comments.createCommentInComments('Hello', 1, 1);
-comments.createCommentInComments('Yo', 2, 1);
-comments.createCommentInComments('What', 3, 1);
-comments.createCommentInComments('No', 1, 1);
 
 
 module.exports = client;

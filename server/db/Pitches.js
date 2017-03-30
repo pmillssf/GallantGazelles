@@ -1,5 +1,5 @@
 const pg = require('pg');
-const db = require('../db.js');
+const db = require('./../db.js');
 
 // module.exports.getAllPitches = () => {
 //   //Returns promise with query
