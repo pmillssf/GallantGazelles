@@ -33,8 +33,8 @@ votes.voteOnPitch(1, 2, -1);
 votes.voteOnPitch(2, 1, -1);
 votes.voteOnPitch(2, 2, 0);
 
-comments.createCommentInComments('Hello', 1, 1);
-comments.createCommentInComments('Yo', 2, 1);
-comments.createCommentInComments('What', 3, 1);
-comments.createCommentInComments('No', 1, 1);
+comments.createCommentInComments( 1, 1, 'Hello');
+comments.createCommentInComments( 2, 1, 'Yo');
+comments.createCommentInComments( 3, 1, 'What');
+comments.createCommentInComments( 1, 1, 'No');
 }
