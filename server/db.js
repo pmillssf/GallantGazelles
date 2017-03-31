@@ -10,7 +10,7 @@ pg.defaults.ssl = true;
 var client = pg.connect(process.env.DATABASE_URL, function(err, client) {
   if (err) throw err;
   console.log('Connected to postgres! Getting schemas...');
-  client.query('DROP TABLE session, users, categories, comments, followers, investments, pitches, votes');
+  client.query('DROP TABLE IF IT EXISTS session, users, categories, comments, followers, investments, pitches, votes');
   client.query(models.sessionTable);
   client.query(models.usersTable);
   client.query(models.categoriesTable);
