@@ -2,12 +2,14 @@ var pg = require('pg');
 // var knex = require('../test/db/knex.js').config;
 var models = require('./db/Models.js');
 
+var connectString = process.env.DATABASE_URL || 'postgres://ncmqvhtx:xgH461dPbvUkS05SodtWCzVDhCg31jin@stampy.db.elephantsql.com:5432/ncmqvhtx'
+
 // client = new pg.Client(knex.connection);
 // client.connect();
 // module.exports = client;
 
 pg.defaults.ssl = true;
-var client = new pg.Client(process.env.DATABASE_URL);
+var client = new pg.Client(connectString);
 client.connect(function (err) {
   if (err) throw err;
   console.log('Connected to postgres! Getting schemas...');
