@@ -9,6 +9,7 @@ const dbConfig = require('../test/db/knex.js');
 const auth = require('./routes/auth.js');
 const app = express();
 const router = require('./routes.js');
+const db = require('./db.js');
 const port = process.env.PORT || 8080;
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, '/../client/')));
@@ -48,7 +49,9 @@ app.listen(port, function() {
 });
 
 const dummyData = require('./db/Dummy-Data.js');
-dummyData.loadData();
+if (db){
+  dummyData.loadData();
+}
 
 module.exports = app;
 
