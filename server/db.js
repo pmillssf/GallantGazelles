@@ -21,5 +21,5 @@ var client = pg.connect(process.env.DATABASE_URL, function(err, client) {
   client.query(models.votesTable);
 });
 
-
+console.log('client', client);
 module.exports = client;
