@@ -24,7 +24,7 @@ export function fetchPitches(category = 'all') {
   return function(dispatch) {
     dispatch(requestPitches());
     //We can possibly define categories here?
-    axios.get('http://localhost:8080/api/pitches?q=all')
+    axios.get('/api/pitches?q=all')
     .then(results => dispatch(receivePitches(results)))
     .catch(error => dispatch(errorPitches(error)))
   }
@@ -59,7 +59,7 @@ export function upvote(user_id, pitch_id, vote) {
     dispatch(upvoteToggle())
     let vote_value = vote === 1 ? 0 : 1;
     console.log(vote_value)
-    axios.put('http://localhost:8080/api/votes', { user_id, pitch_id, vote_value })
+    axios.put('/api/votes', { user_id, pitch_id, vote_value })
     .then(results => console.log(results))
     .catch(error => console.error(error))
   }
@@ -75,7 +75,7 @@ export function downvote(user_id, pitch_id, vote) {
     dispatch(downvoteToggle())
     let vote_value = vote === - 1 ? 0 : -1;
     console.log(vote_value)
-    axios.put('http://localhost:8080/api/votes', { user_id, pitch_id, vote_value })
+    axios.put('/api/votes', { user_id, pitch_id, vote_value })
     .then(results => console.log(results))
     .catch(error => console.error(error))
   }

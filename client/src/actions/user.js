@@ -23,7 +23,7 @@ export function logOut() {
 
 export function checkSession() {
   return (dispatch) => {
-    axios.get('http://localhost:8080/auth/signin')
+    axios.get('/auth/signin')
     .then(results => dispatch(completeSignIn(results.data.username, results.data.user_id)))
     .catch(error => dispatch(signInError(error)))
   }

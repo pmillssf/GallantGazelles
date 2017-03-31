@@ -19,7 +19,7 @@ const commentSubmitted = () => {
 export const creatingComment = (userId, pitchId, comment) => {
   return (dispatch) => {
     dispatch(sendingComment())
-    axios.post('http://localhost:8080/api/comments', { userId, pitchId, comment })
+    axios.post('/api/comments', { userId, pitchId, comment })
     .then( (results) => dispatch(commentSubmitted()) )
     .catch( (error) => dispatch(sendingCommentError(error)) )
   }
@@ -45,7 +45,7 @@ const fetchingCommentsError = (error) => {
 export const fetchPitchComments = (pitchId) => {
   return (dispatch) => {
     dispatch(fetchingComments())
-    axios.get('http://localhost:8080/api/comments', {
+    axios.get('/api/comments', {
       params: { pitchId }
     })
     .then( results => { dispatch(receivedComments(results.data))})

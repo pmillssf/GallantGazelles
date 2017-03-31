@@ -28,10 +28,10 @@ module.exports.loadData = function() {
 // categories.addCategory('Android');
 // categories.addCategory('Productivity');
 
-votes.voteOnPitch(1, 1, 1);
-votes.voteOnPitch(-1, 2, 1);
-votes.voteOnPitch(-1, 1, 2);
-votes.voteOnPitch(0, 2, 2);
+// votes.voteOnPitch(1, 1, 1);
+// votes.voteOnPitch(-1, 2, 1);
+// votes.voteOnPitch(-1, 1, 2);
+// votes.voteOnPitch(0, 2, 2);
 
 // comments.createCommentInComments( 1, 1, 'Hello');
 // comments.createCommentInComments( 2, 1, 'Yo');

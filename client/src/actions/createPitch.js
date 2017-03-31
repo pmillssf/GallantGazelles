@@ -63,7 +63,7 @@ function pitchError(error) {
 export function createPitch(user_id, name, video, website, profile, blurb, category_id) {
   return (dispatch) => {
     dispatch(creatingPitch())
-    axios.post('http://localhost:8080/api/pitches', {user_id, name, video, website, profile, blurb, category_id})
+    axios.post('/api/pitches', {user_id, name, video, website, profile, blurb, category_id})
     .then(data => dispatch(pitchCreated(data)))
     .catch(error => dispatch(pitchError(error)))
   }
