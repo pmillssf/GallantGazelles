@@ -6,7 +6,7 @@ var models = require('./db/Models.js');
 // client.connect();
 // module.exports = client;
 
-pg.defaults.ssl = false;
+pg.defaults.ssl = true;
 var client = new pg.Client(process.env.ELEPHANT_SQL);
 console.log(process.env.ELEPHANT_SQL);
 client.connect(function(err, client) {
