@@ -1,4 +1,4 @@
-var pg = require('pg').native;
+var pg = require('pg');
 // var knex = require('../test/db/knex.js').config;
 var models = require('./db/Models.js');
 
