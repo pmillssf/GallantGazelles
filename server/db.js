@@ -7,7 +7,7 @@ var models = require('./db/Models.js');
 // module.exports = client;
 
 pg.defaults.ssl = false;
-var client = new pg.Client('AddLinkHere');
+var client = new pg.Client(process.env.ELEPHANT_SQL);
 client.connect(function(err, client) {
   if (err) throw err;
   console.log('Connected to postgres! Getting schemas...');
