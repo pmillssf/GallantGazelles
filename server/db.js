@@ -7,7 +7,7 @@ var models = require('./db/Models.js');
 // module.exports = client;
 
 pg.defaults.ssl = true;
-pg.connect(process.env.DATABASE_URL, function(err, client) {
+var client = pg.connect(process.env.DATABASE_URL, function(err, client) {
   if (err) throw err;
   console.log('Connected to postgres! Getting schemas...');
   client.query('DROP TABLE session, users, categories, comments, followers, investments, pitches, votes');
