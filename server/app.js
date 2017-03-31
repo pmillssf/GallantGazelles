@@ -44,7 +44,7 @@ app.use('/api', router);
 app.use('/auth', auth);
 
 app.listen(port, function() {
-	console.log('listening to 8080');
+	console.log('listening to', port);
 });
 
 const dummyData = require('./db/Dummy-Data.js');
