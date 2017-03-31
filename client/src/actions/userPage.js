@@ -39,21 +39,21 @@ export function fetchUserPage(userid) {
   return (dispatch) => {
     dispatch(fetchingUser())
     //Fetch user profile can refactor to all promise... but not right now
-    axios.get('http://localhost:8080/api/user', {
+    axios.get('/api/user', {
       params: {
         userId: userid
       }
     })
     .then( profile => { dispatch(receivedUserProfile(profile.data)) } )
     //Fetch comments
-    axios.get('http://localhost:8080/api/comments', {
+    axios.get('/api/comments', {
       params: {
         userId: userid
       }
     })
     .then( comments => { dispatch(receivedUserComments(comments.data)) } )
     //Fetch pitches
-    axios.get('http://localhost:8080/api/pitches', {
+    axios.get('/api/pitches', {
       params: {
         q: 'user',
         userId: userid
@@ -61,7 +61,7 @@ export function fetchUserPage(userid) {
     })
     .then( pitches => { dispatch(receivedUserPitches(pitches.data)) } )
     //Fetch follows
-    axios.get('http://localhost:8080/api/followers', {
+    axios.get('/api/followers', {
       params: {
         userId: userid
       }

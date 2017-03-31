@@ -15,7 +15,7 @@ export function fetchPitch(userid=null, pitchid) {
   return (dispatch) => {
     dispatch(pitchFetching())
     //URL to get pitch
-    axios.get('http://localhost:8080/api/pitch', {
+    axios.get('/api/pitch', {
       params: {
         userId: userid,
         pitchId: pitchid

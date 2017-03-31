@@ -29,7 +29,7 @@ export function signIn(username, password) {
     //pass userId or username information from request.
     $.ajax({
       type: 'POST',
-      url: 'http://localhost:8080/auth/signin',
+      url: '/auth/signin',
       data: {"username": username, "password": password},
       success: (msg)=> {
         console.log(msg);

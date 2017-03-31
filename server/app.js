@@ -48,10 +48,10 @@ app.listen(port, function() {
 	console.log('listening to 8080');
 });
 
-const dummyData = require('./db/Dummy-Data.js');
-if (db){
-  dummyData.loadData();
-}
+// const dummyData = require('./db/Dummy-Data.js');
+// if (db){
+//   dummyData.loadData();
+// }
 
 module.exports = app;
 

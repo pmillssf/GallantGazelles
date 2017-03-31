@@ -1,6 +1,5 @@
 const pg = require('pg');
 const db = require('../db.js');
-console.log('DBDBDBDBDBDB', db);
 
 module.exports.getAllUsers = () => {
   return db.query("SELECT id, username, profile FROM users");
