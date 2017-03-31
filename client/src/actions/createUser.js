@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { signIn } from './signIn';
 
 export function editUsername(username) {
   return {
@@ -49,7 +50,8 @@ export function submitUser(username, password, profile, email) {
   return (dispatch) => {
     dispatch(creatingUser())
     axios.post('http://localhost:8080/api/users', {username, password, email, profile })
-    .then( results => dispatch(userSubmitted()))
+    .then(results => dispatch(userSubmitted()))
+    .then(results => dispatch(signIn(username, password)))
     .catch( error => dispatch(creatingUserError(error)))
   }
 }

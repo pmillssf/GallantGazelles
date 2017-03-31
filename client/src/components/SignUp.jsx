@@ -30,7 +30,10 @@ class SignUp extends Component {
             <Header as='h1' floated='left'>Sign Up</Header>
             <Header as='h5' floated='right'>Already have an account? Sign in here</Header>
           </Segment>
-          <Form onSubmit={()=> {dispatch(submitUser(username, password, profile, email))}}>
+          <Form onSubmit={(e)=> {
+            e.preventDefault();
+            submitUser(username, password, profile, email)
+          }}>
             <Form.Input label='Name' onChange={(e)=>{changeUsername(e.target.value)}} />
             <Form.Input label='Email' onChange={(e)=>{changeEmail(e.target.value)}} />
             <Form.Input label='Re-Enter Email' />
