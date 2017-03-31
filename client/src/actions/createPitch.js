@@ -64,7 +64,11 @@ export function createPitch(user_id, name, video, website, profile, blurb, categ
   return (dispatch) => {
     dispatch(creatingPitch())
     axios.post('/api/pitches', {user_id, name, video, website, profile, blurb, category_id})
-    .then(data => dispatch(pitchCreated(data)))
+    .then(data => {
+      const pitchId = data.data;
+      dispatch(pitchCreated(pitchId));
+      window.location = `/pitch/${pitchId}`;
+    })
     .catch(error => dispatch(pitchError(error)))
   }
 }

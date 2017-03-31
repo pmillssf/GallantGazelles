@@ -24,5 +24,4 @@ client.connect(function (err) {
   // client.query(models.votesTable);
 });
 
-console.log('client', client);
 module.exports = client;
