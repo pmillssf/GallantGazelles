@@ -13,7 +13,6 @@ function pitchFollowError(error) {
 
 export function followPitch(userid, pitchid, following) {
   return (dispatch) => {
-    console.log('user following: ', following);
     axios.put('/api/followers', { userid, pitchid, following })
     .then( results => dispatch(pitchFollowToggleSuccessful()))
     .catch( error => dispatch(pitchFollowError(error)))
