@@ -46,6 +46,7 @@ router.get('/categories', Categories.getCategories);
 
 // FOLLOWERS
 router.get('/followers', Followers.getFollowers);
+router.put('/followers', Followers.postFollower);
 router.post('/followers', Followers.postFollower);
 router.delete('/followers', Followers.removeFollower);
 

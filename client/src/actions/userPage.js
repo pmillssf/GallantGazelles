@@ -67,5 +67,8 @@ export function fetchUserPage(userid) {
       }
     })
     .then( follows => { dispatch(receivedUserFollows(follows.data)) } )
+    .catch(( err => {
+      console.log(err);
+    }))
   }
 }

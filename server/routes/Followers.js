@@ -24,10 +24,9 @@ module.exports.getFollowers = (req, res, next) => {
 };
 
 module.exports.postFollower = (req, res, next) => {
-  const { userId, pitchId } = req.body;
-
+  const { userid, pitchid } = req.body;
   // EXAMPLE: /api/followers?userId=3&pitchId=2
-  db.postNewPitchFollower(userId, pitchId)
+  db.postNewPitchFollower(userid, pitchid)
     .then(results => res.send('successfully added follower information'))
     .catch(error => res.status(404).send(error));
 };

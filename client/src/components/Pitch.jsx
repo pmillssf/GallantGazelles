@@ -9,6 +9,7 @@ import {
   Button, Container, Dimmer, Divider, Grid, Header, Icon, Image, Item, Label, Loader, Segment, Statistic
 } from 'semantic-ui-react';
 import { fetchPitchComments, typingComment } from '../actions/comments';
+import { followPitch } from '../actions/followPitch';
 
 class Pitch extends Component {
   constructor(props) {
@@ -40,7 +41,7 @@ class Pitch extends Component {
 
   render() {
     const {user, id, vote_type} = this.props
-    const {onClickUpvote, onClickDownvote, onTypeChange } = this.props
+    const {onClickUpvote, onClickDownvote, onTypeChange, onClickFollow } = this.props
     const upvoteButton = <Button icon size='big' color='green' onClick={() => onClickUpvote(user, id, vote_type)}><Icon name='arrow up' /></Button>
     const downvoteButton = <Button icon size='big' color='red' onClick={() => onClickDownvote(user, id, vote_type)}><Icon name='arrow down' /></Button>
     const neutralUpButton = (<Button icon basic size='big' color='grey' onClick={() => onClickUpvote(user, id, vote_type)}><Icon name='arrow up' /></Button>)
@@ -73,7 +74,7 @@ class Pitch extends Component {
                 </Header>
                 <p>{this.props.profile}</p>
                 <p>
-                  <Button primary>Follow</Button>
+                  <Button primary onClick={() => onClickFollow(user, id)}>Follow</Button>
                   <Button primary>Visit Website</Button>
                   <Button primary>Invest</Button>
                   <Button primary><Icon name='share' />  Share</Button>
@@ -111,7 +112,8 @@ const mapDispatchToProps = (dispatch) => {
     onClickUpvote: (user, pitchid, vote) => { dispatch(upvote(user, pitchid, vote)) },
     onClickDownvote: (user, pitchid, vote) => { dispatch(downvote(user, pitchid, vote)) },
     getPitch: (pitchid, userid) => { dispatch(fetchPitch(pitchid, userid)) },
-    getComments: (pitchid) => { dispatch(fetchPitchComments(pitchid)) }
+    getComments: (pitchid) => { dispatch(fetchPitchComments(pitchid)) },
+    onClickFollow: (userid, pitchid) => { dispatch(followPitch(userid, pitchid)) }
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Pitch);
