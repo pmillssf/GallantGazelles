@@ -25,7 +25,6 @@ module.exports.getFollowers = (req, res, next) => {
 
 module.exports.postFollower = (req, res, next) => {
   const { userid, pitchid, following } = req.body;
-  console.log('posting a follower: ', 'userID', userid, 'pitchid', pitchid, 'following: ', following);
   // EXAMPLE: /api/followers?userId=3&pitchId=2
   db.postNewPitchFollower(userid, pitchid)
     .then(results => res.send('successfully added follower information'))
