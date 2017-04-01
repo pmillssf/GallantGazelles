@@ -37,7 +37,6 @@ function receivedUserFollows(follows) {
 
 export function fetchUserPage(userid) {
   return (dispatch) => {
-    console.log('userid: ', userid)
     dispatch(fetchingUser())
     //Fetch user profile can refactor to all promise... but not right now
     axios.get('/api/user', {
