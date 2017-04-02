@@ -8,7 +8,7 @@
     "node": ">=6.4.0"
   },
   "scripts": {
-    "start": "nodemon ./server/app.js",
+    "start": "node ./server/app.js",
     "postinstall": "webpack",
     "dev": "webpack -d --watch",
     "test": "jest"
