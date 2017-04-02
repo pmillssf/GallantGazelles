@@ -51,3 +51,7 @@ module.exports.getUserPasswordByName = (username) => {
 module.exports.getUserProfile = (userId) => {
   return db.query(`SELECT username, profile FROM users WHERE id=${userId}`);
 };
+
+module.exports.getUsernameByUserId = (userId) => {
+  return db.query(`SELECT username FROM users WHERE id='${userId}'`);
+}
