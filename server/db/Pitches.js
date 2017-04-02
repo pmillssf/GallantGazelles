@@ -52,4 +52,8 @@ LEFT JOIN (SELECT sum(vote_type) votes, pitch_id FROM votes GROUP BY pitch_id) v
 ON (pitchTable.id = votestable.pitch_id)
 LEFT JOIN (SELECT vote_type, pitch_id FROM votes WHERE user_id =${userId}) uservote
 ON (pitchTable.id = uservote.pitch_id);`)
+};
+
+module.exports.getPitchName = (pitchId) => {
+  return db.query(`SELECT name FROM pitches WHERE id='${pitchId}'`);
 }
