@@ -33,10 +33,8 @@ module.exports.postComment = (req, res, next) => {
 			verb: 'comment',
 			object: results.rows[0].id, // above DB query returns comment ID and timestamp 
 			target: `${pitchId}`,
-			time: new Date()
+			time: results.rows[0].timestamp
 		}
-
-		console.log('activity time: ', activity);
 
 		commentFeed.addActivity(activity)
 			.then(response => {

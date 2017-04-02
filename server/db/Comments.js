@@ -25,7 +25,7 @@ module.exports.deleteCommentByCommentId = (commentId) => {
 
 module.exports.createCommentInComments = (userId, pitchId, comment) => {
   return db.query(`INSERT INTO comments (user_id, pitch_id, comment) VALUES (${userId}, ${pitchId}, '${comment}')
-    RETURNING id;`);
+    RETURNING id, timestamp;`);
 }
 
 module.exports.getCommentByCommentId = (commentId) => {
