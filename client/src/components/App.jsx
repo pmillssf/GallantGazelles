@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Video from './Video.jsx';
 import MainPitchInfo from './MainPitchInfo.jsx';
+import HomeFeed from './HomeFeed.jsx';
 import TrendingVideos from './TrendingVideos.jsx';
 import axios from 'axios';
 import { Container, Dimmer, Divider, Loader } from 'semantic-ui-react';
@@ -21,6 +22,8 @@ class App extends Component {
     if (this.props.mainPitch.video) {
       return (
         <section>
+          <HomeFeed />
+          <Divider hidden />
           <Video video={this.props.mainPitch.video}/>
           <Divider hidden />
           <MainPitchInfo />
