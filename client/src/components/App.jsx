@@ -7,10 +7,12 @@ import axios from 'axios';
 import { Container, Dimmer, Divider, Loader } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { fetchPitches } from '../actions/pitch';
+import { fetchUserPage } from '../actions/userPage';
 
 class App extends Component {
   constructor(props) {
     super(props);
+    console.log('new props: ', this.props)
   }
 
   componentWillMount() {
@@ -18,11 +20,37 @@ class App extends Component {
     dispatch(fetchPitches())
   }
 
+  componentDidMount() {
+    const {dispatch} = this.props;
+    dispatch(fetchUserPage(this.props.userid))
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {dispatch} = this.props;
+    if (nextProps.userid !== this.props.userid) {
+      dispatch(fetchUserPage(nextProps.userid))
+    }
+  }
+
   render() {
-    if (this.props.mainPitch.video) {
+
+    const { userComments } = this.props;
+
+    if (this.props.mainPitch.video && this.props.userComments.length > 0) {
+
+      // const test = userComments.slice(0, 5).map( (comment) => axios.get('/api/comments', { params: { pitchId: comment.pitch_id } }) );
+
+      // axios.all(test)
+      // .then(results => {
+      //   console.log('AXIOS RESULTS: ', results);
+      // })
+      // .catch(error => {
+      //   console.log('AXIOS ERROR: ', error);
+      // })
+
       return (
         <section>
-          <HomeFeed />
+          <HomeFeed/>
           <Divider hidden />
           <Video video={this.props.mainPitch.video}/>
           <Divider hidden />
@@ -47,7 +75,9 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     pitches: state.pitches.pitches,
-    mainPitch: state.pitches.mainPitch
+    mainPitch: state.pitches.mainPitch,
+    userid: state.user.userid,
+    userComments: state.userPage.comments
   }
 }
 

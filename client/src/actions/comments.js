@@ -53,6 +53,15 @@ export const fetchPitchComments = (pitchId) => {
   }
 }
 
+export const fetchRecentPitchComments = (pitchId) => {
+  return (dispatch) => {
+    dispatch(fetchingComments())
+    axios.get('/api/comments/recent')
+    .then( results => { dispatch(receivedComments(results.data))})
+    .catch( error => { dispatch(fetchingCommentsError(error))})
+  }
+}
+
 export const typingComment = (text) => {
   return {
     type: 'TYPING_COMMENT',

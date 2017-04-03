@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Feed, Segment, Menu } from 'semantic-ui-react';
+import { fetchRecentPitchComments } from '../actions/comments.js';
+import { connect } from 'react-redux';
 
 const dummyData = {
   followingPitches: [{
@@ -22,17 +24,33 @@ const dummyData = {
 }
 
 
-export default class HomeFeed extends Component {
+class HomeFeed extends Component {
   constructor(props) {
     super(props);
     this.state = { activeItem: 'followingPitches' };
 
     this.handleItemClick = (e, {name}) => this.setState({ activeItem: name });
+
+    console.log('we have the feed!', this.props.comments);
+  }
+
+  componentDidMount() {
+    const {dispatch} = this.props;
+    dispatch(fetchRecentPitchComments());
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {dispatch} = this.props;
+    if (nextProps.comments !== this.props.comments) {
+      dispatch(fetchRecentPitchComments());
+    }
   }
 
   render() {
 
     const { activeItem } = this.state;
+
+    const { comments } = this.props.comments;
 
     return (
       <Container text>
@@ -49,4 +67,12 @@ export default class HomeFeed extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    ...state.comments
+  }
+}
+
+export default connect(mapStateToProps)(HomeFeed)
 
