@@ -31,3 +31,7 @@ module.exports.createCommentInComments = (userId, pitchId, comment) => {
 module.exports.getCommentByCommentId = (commentId) => {
   return db.query(`SELECT comment FROM comments where id = '${commentId}'`);
 }
+
+module.exports.getRecentComments = () => {
+  return db.query(`SELECT * FROM comments ORDER BY timestamp DESC Limit 10`);
+}
