@@ -18,7 +18,6 @@ class App extends Component {
 
   componentWillMount() {
     const {dispatch} = this.props;
-    //dispatch(fetchPitches())
   }
 
   componentDidMount() {
@@ -30,7 +29,6 @@ class App extends Component {
   render() {
 
     const { comments, pitches } = this.props;
-    console.log('pitches in app: ', pitches);
     if (this.props.mainPitch.video && comments.length > 0) {
 
       return (
