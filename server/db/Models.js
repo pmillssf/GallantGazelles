@@ -10,7 +10,7 @@ const followersTable = 'CREATE TABLE IF NOT EXISTS followers (id serial PRIMARY 
 
 const investmentsTable = 'CREATE TABLE IF NOT EXISTS investments (id serial PRIMARY KEY, user_id int, pitch_id int)';
 
-const pitchesTable = 'CREATE TABLE IF NOT EXISTS pitches (id serial PRIMARY KEY, name varchar(255) NOT NULL UNIQUE, video varchar(255), website varchar(255), profile varchar(255), blurb text, category_id int, investment_status boolean DEFAULT false, timestamp timestamp DEFAULT current_timestamp)';
+const pitchesTable = 'CREATE TABLE IF NOT EXISTS pitches (id serial PRIMARY KEY, user_id int, name varchar(255) NOT NULL UNIQUE, video varchar(255), website varchar(255), profile varchar(255), blurb text, category_id int, investment_status boolean DEFAULT false, timestamp timestamp DEFAULT current_timestamp)';
 
 const votesTable = 'CREATE TABLE IF NOT EXISTS votes (id serial PRIMARY KEY, user_id int, pitch_id int, vote_type int DEFAULT 0, timestamp timestamp DEFAULT current_timestamp)';
 
