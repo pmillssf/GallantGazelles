@@ -4,27 +4,6 @@ import { fetchRecentPitchComments } from '../actions/comments.js';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-const dummyData = {
-  followingPitches: [{
-    date: '1 Hour Ago',
-    image: 'http://react.semantic-ui.com/assets/images/avatar/small/matt.jpg',
-    meta: '1 Like',
-    summary: 'theClerk liked a new pitch: "Throw coins at homeless people!"'
-  }, {
-    date: '4 Hours Ago',
-    image: 'http://react.semantic-ui.com/assets/images/avatar/small/matt.jpg',
-    meta: '2 Likes',
-    summary: 'theClerk commented on Example pitch: "Greed is good!"'
-  }],
-  followingUsers: [{
-    date: '8 Hours Ago',
-    image: 'http://react.semantic-ui.com/assets/images/avatar/small/matt.jpg',
-    meta: '4 Likes',
-    summary: 'the Clerk killed a homeless person!'
-  }]
-}
-
-
 class HomeFeed extends Component {
   constructor(props) {
     super(props);
@@ -37,9 +16,9 @@ class HomeFeed extends Component {
   }
 
   componentDidMount() {
-      const { comments } = this.props;
+      const { comments, pitches } = this.props;
       // for each comment, make a get request to enrich the comment 
-      const enriched = comments.map(comment => axios.get('/api/stream/comments', {
+      const enrichedComments = comments.map(comment => axios.get('/api/stream/comments', {
         params: {
           userId: comment.user_id,
           pitchId: comment.pitch_id,
@@ -47,7 +26,7 @@ class HomeFeed extends Component {
         }
       }));
 
-      axios.all(enriched)
+      axios.all(enrichedComments)
       .then(results => {
         // array of objects with data
         const newComments = results.map(comment => {
@@ -63,6 +42,7 @@ class HomeFeed extends Component {
       })
       .then(() => {
         // enrich pitches data here
+        const 
       })
   }
 
@@ -108,12 +88,5 @@ class HomeFeed extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    ...state.comments
-  }
-}
-
 export default HomeFeed
-// export default connect(mapStateToProps)(HomeFeed)
 
