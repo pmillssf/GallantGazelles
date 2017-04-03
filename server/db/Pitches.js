@@ -61,3 +61,7 @@ module.exports.getPitchName = (pitchId) => {
 module.exports.getRecentPitches = () => {
   return db.query(`SELECT * FROM pitches ORDER BY timestamp DESC Limit 10`);
 }
+
+module.exports.getPitchNameAndBlurbByPitchId = (pitchId) => {
+  return db.query(`SELECT name, blurb FROM pitches WHERE id='${pitchId}'`);
+}
