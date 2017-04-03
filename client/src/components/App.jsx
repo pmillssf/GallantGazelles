@@ -23,7 +23,6 @@ class App extends Component {
 
   componentDidMount() {
     const {dispatch} = this.props;
-   // dispatch(fetchUserPage(this.props.userid))
     dispatch(fetchRecentPitchComments());
 
   }
