@@ -8,6 +8,7 @@ import { Container, Dimmer, Divider, Loader } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { fetchPitches } from '../actions/pitch';
 import { fetchUserPage } from '../actions/userPage';
+import { fetchRecentPitchComments } from '../actions/comments.js';
 
 class App extends Component {
   constructor(props) {
@@ -22,31 +23,23 @@ class App extends Component {
 
   componentDidMount() {
     const {dispatch} = this.props;
-    dispatch(fetchUserPage(this.props.userid))
+   // dispatch(fetchUserPage(this.props.userid))
+    dispatch(fetchRecentPitchComments());
+
   }
 
-  componentWillReceiveProps(nextProps) {
-    const {dispatch} = this.props;
-    if (nextProps.userid !== this.props.userid) {
-      dispatch(fetchUserPage(nextProps.userid))
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   const {dispatch} = this.props;
+  //   if (nextProps.userid !== this.props.userid) {
+  //     dispatch(fetchUserPage(nextProps.userid))
+  //   }
+  // }
 
   render() {
 
-    const { userComments } = this.props;
+    const { comments } = this.props;
 
-    if (this.props.mainPitch.video) {
-
-      // const test = userComments.slice(0, 5).map( (comment) => axios.get('/api/comments', { params: { pitchId: comment.pitch_id } }) );
-
-      // axios.all(test)
-      // .then(results => {
-      //   console.log('AXIOS RESULTS: ', results);
-      // })
-      // .catch(error => {
-      //   console.log('AXIOS ERROR: ', error);
-      // })
+    if (this.props.mainPitch.video && comments.length > 0) {
 
       return (
         <section>
@@ -54,7 +47,7 @@ class App extends Component {
           <Divider hidden />
           <MainPitchInfo />
           <Divider hidden />
-          <HomeFeed/>
+          <HomeFeed comments={comments}/>
           <Divider hidden />
           <TrendingVideos />
         </section>
@@ -77,7 +70,8 @@ const mapStateToProps = (state) => {
     pitches: state.pitches.pitches,
     mainPitch: state.pitches.mainPitch,
     userid: state.user.userid,
-    userComments: state.userPage.comments
+    //userComments: state.userPage.comments
+    ...state.comments
   }
 }
 
