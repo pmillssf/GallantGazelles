@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Container, Feed, Segment, Menu } from 'semantic-ui-react';
+import { Container, Feed, Segment, Menu, Dimmer, Loader } from 'semantic-ui-react';
 import { fetchRecentPitchComments } from '../actions/comments.js';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 const dummyData = {
   followingPitches: [{
@@ -33,8 +34,6 @@ class HomeFeed extends Component {
     };
 
     this.handleItemClick = (e, {name}) => this.setState({ activeItem: name });
-
-    console.log('we have the feed!', this.props.comments);
   }
 
   componentDidMount() {
@@ -49,33 +48,35 @@ class HomeFeed extends Component {
     }
   }
 
-  {
-    id,
-    comment,
-    user_id,
-    pitch_id,
-    timestamp
-  }
-
   render() {
 
     const { activeItem } = this.state;
 
     if (this.props.comments.length > 0) {
-      const { comments } = this.props.comments;
+      const { comments } = this.props;
 
       // for each comment, make a get request to enrich the comment 
       const enriched = comments.map(comment => axios.get('/api/stream/comments', {
         params: {
           userId: comment.user_id,
           pitchId: comment.pitch_id,
-          commentId: id
+          commentId: comment.id
         }
       }));
 
       axios.all(enriched)
       .then(results => {
-        console.log(results);
+        // array of objects with data
+        const newComments = results.map(comment => {
+          return {
+            date: '1 hour ago', 
+            image: 'http://react.semantic-ui.com/assets/images/avatar/small/matt.jpg',
+            meta: '1 like',
+            summary: `${comment.data.username} commented on the ${comment.data.pitchName} pitch: "${comment.data.comment}"`
+          }
+        })
+
+        this.setState({activeComments: newComments})
       })
 
       return (
@@ -87,7 +88,7 @@ class HomeFeed extends Component {
                 <Menu.Item name='followingUsers' active={activeItem ==='followingUsers'} onClick={this.handleItemClick}/>
               </Menu>
             </Segment>
-            <Feed events={dummyData[activeItem]}/>
+            <Feed events={this.state.activeComments}/>
           </Segment>
         </Container>
       )
