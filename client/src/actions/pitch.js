@@ -30,6 +30,16 @@ export function fetchPitches(category = 'all') {
   }
 }
 
+export function fetchRecentPitches() {
+  return function(dispatch) {
+    dispatch(requestPitches());
+    //We can possibly define categories here?
+    axios.get('/api/pitches/recent')
+    .then(results => dispatch(receivePitches(results)))
+    .catch(error => dispatch(errorPitches(error)))
+  }
+}
+
 export function selectPitch (pitchId) {
   return {
     type: 'SELECT_PITCH',

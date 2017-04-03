@@ -6,7 +6,7 @@ import TrendingVideos from './TrendingVideos.jsx';
 import axios from 'axios';
 import { Container, Dimmer, Divider, Loader } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { fetchPitches } from '../actions/pitch';
+import { fetchPitches, fetchRecentPitches } from '../actions/pitch';
 import { fetchUserPage } from '../actions/userPage';
 import { fetchRecentPitchComments } from '../actions/comments.js';
 
@@ -18,20 +18,17 @@ class App extends Component {
 
   componentWillMount() {
     const {dispatch} = this.props;
-    dispatch(fetchPitches())
   }
 
   componentDidMount() {
     const {dispatch} = this.props;
-   // dispatch(fetchUserPage(this.props.userid))
     dispatch(fetchRecentPitchComments());
-
+    dispatch(fetchRecentPitches());
   }
 
   render() {
 
-    const { comments } = this.props;
-
+    const { comments, pitches } = this.props;
     if (this.props.mainPitch.video && comments.length > 0) {
 
       return (
@@ -40,7 +37,7 @@ class App extends Component {
           <Divider hidden />
           <MainPitchInfo />
           <Divider hidden />
-          <HomeFeed comments={comments}/>
+          <HomeFeed comments={comments} pitches={pitches}/>
           <Divider hidden />
           <TrendingVideos />
         </section>
