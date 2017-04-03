@@ -8,6 +8,7 @@ const Votes = require('./routes/Votes');
 const StreamComments = require('./routes/Stream-Comments');
 const RecentComments = require('./routes/Recent-Comments');
 const RecentPitches = require('./routes/Recent-Pitches');
+const StreamPitches = require('./routes/Stream-Pitches');
 // const Categories = require('./routes/Categories');
 
 // Rest API to /api
@@ -37,6 +38,9 @@ router.post('/comments', Comments.postComment);
 
 //Stream-Comments
 router.get('/stream/comments', StreamComments.commentEnrichment);
+
+//Stream-Pitches
+router.get('/stream/pitches', StreamPitches.pitchEnrichment);
 
 // Recent Comments
 router.get('/comments/recent', RecentComments.getMostRecentComments);
