@@ -31,8 +31,10 @@ class HomeFeed extends Component {
       .then(results => {
         // array of objects with data
         const newComments = results.map(comment => {
+          const timestamp = new Date(comment.data.timestamp.toString());
+          timestamp.setUTCHours(timestamp.getUTCHours() - 7);
           return {
-            date: comment.data.timestamp, 
+            date: timestamp.toLocaleString(), 
             image: 'http://react.semantic-ui.com/assets/images/avatar/small/matt.jpg',
             meta: '0 likes',
             summary: `${comment.data.username} commented on the ${comment.data.pitchName}: "${comment.data.comment}"`
@@ -54,8 +56,10 @@ class HomeFeed extends Component {
         axios.all(enrichedPitches)
         .then(results => {
           const newPitches = results.map(pitch => {
-            return {
-              date: pitch.data.timestamp,
+          const timestamp = new Date(pitch.data.timestamp.toString());
+          timestamp.setUTCHours(timestamp.getUTCHours() - 7);
+          return {
+            date: timestamp.toLocaleString(), 
               image: 'https://ph-files.imgix.net/8a2b7acf-d24d-46f3-9060-723db65625a9?auto=format&auto=compress&codec=mozjpeg&cs=strip&w=120&h=120&fit=crop&dpr=2',
               meta: '0 likes',
               summary: `${pitch.data.username} created a new pitch called ${pitch.data.pitchName}. Blurb: "${pitch.data.blurb}."`
