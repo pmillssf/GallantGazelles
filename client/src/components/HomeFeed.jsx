@@ -27,7 +27,10 @@ const dummyData = {
 class HomeFeed extends Component {
   constructor(props) {
     super(props);
-    this.state = { activeItem: 'followingPitches' };
+    this.state = { 
+      activeItem: 'followingPitches', 
+      activeComments: dummyData.followingPitches
+    };
 
     this.handleItemClick = (e, {name}) => this.setState({ activeItem: name });
 
@@ -46,25 +49,59 @@ class HomeFeed extends Component {
     }
   }
 
+  {
+    id,
+    comment,
+    user_id,
+    pitch_id,
+    timestamp
+  }
+
   render() {
 
     const { activeItem } = this.state;
 
-    const { comments } = this.props.comments;
+    if (this.props.comments.length > 0) {
+      const { comments } = this.props.comments;
 
-    return (
-      <Container text>
-        <Segment basic>
-          <Segment basic textAlign='center'>
-            <Menu compact pointing>
-              <Menu.Item name='followingPitches' active={activeItem ==='followingPitches'} onClick={this.handleItemClick}/>
-              <Menu.Item name='followingUsers' active={activeItem ==='followingUsers'} onClick={this.handleItemClick}/>
-            </Menu>
+      // for each comment, make a get request to enrich the comment 
+      const enriched = comments.map(comment => axios.get('/api/stream/comments', {
+        params: {
+          userId: comment.user_id,
+          pitchId: comment.pitch_id,
+          commentId: id
+        }
+      }));
+
+      axios.all(enriched)
+      .then(results => {
+        console.log(results);
+      })
+
+      return (
+        <Container text>
+          <Segment basic>
+            <Segment basic textAlign='center'>
+              <Menu compact pointing>
+                <Menu.Item name='followingPitches' active={activeItem ==='followingPitches'} onClick={this.handleItemClick}/>
+                <Menu.Item name='followingUsers' active={activeItem ==='followingUsers'} onClick={this.handleItemClick}/>
+              </Menu>
+            </Segment>
+            <Feed events={dummyData[activeItem]}/>
           </Segment>
-          <Feed events={dummyData[activeItem]}/>
-        </Segment>
-      </Container>
-    )
+        </Container>
+      )
+      
+    } else {
+      return (
+        <Container>
+          <Dimmer active inverted>
+            <Loader size='large'>Loading</Loader>
+          </Dimmer>
+          LOADING
+        </Container>        
+      )
+    }
   }
 }
 
