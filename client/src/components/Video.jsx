@@ -9,8 +9,8 @@ let Video = (props) => {
       <Container text>
         <Segment>
           <Embed
-            active
-            url={props.video}
+            active source='youtube'
+            id={props.video}
           />
         </Segment>
       </Container>
