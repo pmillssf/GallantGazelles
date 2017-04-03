@@ -31,8 +31,10 @@ class HomeFeed extends Component {
       .then(results => {
         // array of objects with data
         const newComments = results.map(comment => {
+          const timestamp = new Date(comment.data.timestamp.toString());
+          console.log('timestamp: ', timestamp);
           return {
-            date: comment.data.timestamp, 
+            date: timestamp.toLocaleString(), 
             image: 'http://react.semantic-ui.com/assets/images/avatar/small/matt.jpg',
             meta: '0 likes',
             summary: `${comment.data.username} commented on the ${comment.data.pitchName}: "${comment.data.comment}"`
