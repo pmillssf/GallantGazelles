@@ -13,8 +13,8 @@ module.exports.loadData = function() {
 // users.createUser('User3', '123', 'Profile for User3');
 
 
-// pitches.addPitch(1, 'Pitch 1', 'Pitch 1 Video URL', 'Pitch 1 Website URL', 'Pitch 1 Profile', 'Pitch 1 Blurb', '1');
-// pitches.addPitch(2, 'Pitch 2', 'Pitch 2 Video URL', 'Pitch 2 Website URL', 'Pitch 2 Profile', 'Pitch 2 Blurb', '2');
+pitches.addPitch(1, 'ES2018 First Look', 's-G_RZ4RJLU', 'mkkn', 'Pitch 1 Profile', 'Pitch 1 Blurb', '1');
+pitches.addPitch(2, 'Pitch 2', 'Pitch 2 Video URL', 'Pitch 2 Website URL', 'Pitch 2 Profile', 'Pitch 2 Blurb', '2');
 
 // followers.postNewPitchFollower(1, 1);
 // followers.postNewPitchFollower(1, 2);
