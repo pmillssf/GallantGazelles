@@ -36,7 +36,7 @@ class App extends Component {
 
     const { userComments } = this.props;
 
-    if (this.props.mainPitch.video && this.props.userComments.length > 0) {
+    if (this.props.mainPitch.video) {
 
       // const test = userComments.slice(0, 5).map( (comment) => axios.get('/api/comments', { params: { pitchId: comment.pitch_id } }) );
 
@@ -50,11 +50,11 @@ class App extends Component {
 
       return (
         <section>
-          <HomeFeed/>
-          <Divider hidden />
           <Video video={this.props.mainPitch.video}/>
           <Divider hidden />
           <MainPitchInfo />
+          <Divider hidden />
+          <HomeFeed/>
           <Divider hidden />
           <TrendingVideos />
         </section>

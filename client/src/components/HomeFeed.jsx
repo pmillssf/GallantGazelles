@@ -29,8 +29,8 @@ class HomeFeed extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      activeItem: 'followingPitches', 
-      activeComments: dummyData.followingPitches
+      activeItem: 'pitchesYouFollow', 
+      activeComments: []
     };
 
     this.handleItemClick = (e, {name}) => this.setState({ activeItem: name });
@@ -41,20 +41,12 @@ class HomeFeed extends Component {
     dispatch(fetchRecentPitchComments());
   }
 
-  componentWillReceiveProps(nextProps) {
-    const {dispatch} = this.props;
-    if (nextProps.comments !== this.props.comments) {
-      dispatch(fetchRecentPitchComments());
-    }
-  }
-
   render() {
 
-    const { activeItem } = this.state;
+    const { activeItem, activeComments } = this.state;
 
     if (this.props.comments.length > 0) {
       const { comments } = this.props;
-
       // for each comment, make a get request to enrich the comment 
       const enriched = comments.map(comment => axios.get('/api/stream/comments', {
         params: {
@@ -84,7 +76,7 @@ class HomeFeed extends Component {
           <Segment basic>
             <Segment basic textAlign='center'>
               <Menu compact pointing>
-                <Menu.Item name='followingPitches' active={activeItem ==='followingPitches'} onClick={this.handleItemClick}/>
+                <Menu.Item name='pitchesYouFollow' active={activeItem ==='pitchesYouFollow'} onClick={this.handleItemClick}/>
                 <Menu.Item name='followingUsers' active={activeItem ==='followingUsers'} onClick={this.handleItemClick}/>
               </Menu>
             </Segment>
