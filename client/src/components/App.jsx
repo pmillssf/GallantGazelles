@@ -29,7 +29,7 @@ class App extends Component {
 
   render() {
 
-    const { comments, pitches.pitches } = this.props;
+    const { comments, pitches } = this.props;
 
     if (this.props.mainPitch.video && comments.length > 0) {
 

@@ -42,7 +42,7 @@ class HomeFeed extends Component {
       })
       .then(() => {
         // enrich pitches data here
-        const 
+        console.log('THE PITCHES: ', pitches);
       })
   }
 

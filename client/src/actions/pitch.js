@@ -30,7 +30,7 @@ export function fetchPitches(category = 'all') {
   }
 }
 
-export function fetchRecentPitches = () => {
+export function fetchRecentPitches() {
   return function(dispatch) {
     dispatch(requestPitches());
     //We can possibly define categories here?
