@@ -28,13 +28,6 @@ class App extends Component {
 
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   const {dispatch} = this.props;
-  //   if (nextProps.userid !== this.props.userid) {
-  //     dispatch(fetchUserPage(nextProps.userid))
-  //   }
-  // }
-
   render() {
 
     const { comments } = this.props;
@@ -70,7 +63,6 @@ const mapStateToProps = (state) => {
     pitches: state.pitches.pitches,
     mainPitch: state.pitches.mainPitch,
     userid: state.user.userid,
-    //userComments: state.userPage.comments
     ...state.comments
   }
 }
