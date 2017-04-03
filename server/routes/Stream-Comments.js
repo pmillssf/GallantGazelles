@@ -7,6 +7,7 @@ module.exports.commentEnrichment = (req, res) => {
   var username;
   var pitchName;
   var comment;
+  var timestamp;
   dbUsers.getUsernameByUserId(userId)
   .then((results) => {
     username = results.rows[0].username;
@@ -14,7 +15,8 @@ module.exports.commentEnrichment = (req, res) => {
       pitchName = results.rows[0].name;
       dbComments.getCommentByCommentId(commentId).then((results) => {
         comment = results.rows[0].comment;
-        res.send(JSON.stringify({username: username, pitchName: pitchName, comment: comment}));
+        timestamp = results.rows[0].timestamp;
+        res.send(JSON.stringify({username: username, pitchName: pitchName, comment: comment, timestamp: timestamp}));
       })
     })
   }).catch(error => res.status(404).send(error));
