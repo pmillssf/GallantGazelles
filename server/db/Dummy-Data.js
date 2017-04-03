@@ -38,3 +38,5 @@ pitches.addPitch(2, 'Pitch 2', 'Pitch 2 Video URL', 'Pitch 2 Website URL', 'Pitc
 // comments.createCommentInComments( 3, 1, 'What');
 // comments.createCommentInComments( 1, 1, 'No');
 }
+
+INSERT INTO pitches (user_id, name, video, website, profile, blurb, category_id) VALUES (10, ES2018 First Look, '${video}', '${website}', '${profile}', '${blurb}', '${category_id}
