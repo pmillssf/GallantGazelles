@@ -57,3 +57,7 @@ ON (pitchTable.id = uservote.pitch_id);`)
 module.exports.getPitchName = (pitchId) => {
   return db.query(`SELECT name FROM pitches WHERE id='${pitchId}'`);
 }
+
+module.exports.getRecentPitches = () => {
+  return db.query(`SELECT * FROM pitches ORDER BY timestamp DESC Limit 10`);
+}
