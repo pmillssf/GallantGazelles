@@ -32,6 +32,7 @@ class HomeFeed extends Component {
         // array of objects with data
         const newComments = results.map(comment => {
           const timestamp = new Date(comment.data.timestamp.toString());
+          timestamp.setUTCHours(timestamp.getUTCHours() - 7);
           console.log('timestamp: ', timestamp);
           return {
             date: timestamp.toLocaleString(), 
