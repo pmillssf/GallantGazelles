@@ -5,7 +5,8 @@ const Pitches = require('./routes/Pitches');
 const Categories = require('./routes/Categories');
 const Comments = require('./routes/Comments');
 const Votes = require('./routes/Votes');
-const StreamComments = require('./routes/Stream-Comments')
+const StreamComments = require('./routes/Stream-Comments');
+const RecentComments = require('./routes/Recent-Comments');
 // const Categories = require('./routes/Categories');
 
 // Rest API to /api
@@ -35,6 +36,9 @@ router.post('/comments', Comments.postComment);
 
 //Stream-Comments
 router.get('/stream/comments', StreamComments.commentEnrichment);
+
+// Recent Comments
+router.get('/comments/recent', RecentComments.getMostRecentComments);
 
 // PITCH PAGE
 router.get('/pitch', Pitches.getOnePitch);
