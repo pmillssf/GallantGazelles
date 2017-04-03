@@ -7,10 +7,13 @@ import axios from 'axios';
 import { Container, Dimmer, Divider, Loader } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { fetchPitches } from '../actions/pitch';
+import { fetchUserPage } from '../actions/userPage';
+import { fetchRecentPitchComments } from '../actions/comments.js';
 
 class App extends Component {
   constructor(props) {
     super(props);
+    console.log('new props: ', this.props)
   }
 
   componentWillMount() {
@@ -18,15 +21,26 @@ class App extends Component {
     dispatch(fetchPitches())
   }
 
+  componentDidMount() {
+    const {dispatch} = this.props;
+   // dispatch(fetchUserPage(this.props.userid))
+    dispatch(fetchRecentPitchComments());
+
+  }
+
   render() {
-    if (this.props.mainPitch.video) {
+
+    const { comments } = this.props;
+
+    if (this.props.mainPitch.video && comments.length > 0) {
+
       return (
         <section>
-          <HomeFeed />
-          <Divider hidden />
           <Video video={this.props.mainPitch.video}/>
           <Divider hidden />
           <MainPitchInfo />
+          <Divider hidden />
+          <HomeFeed comments={comments}/>
           <Divider hidden />
           <TrendingVideos />
         </section>
@@ -47,7 +61,9 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     pitches: state.pitches.pitches,
-    mainPitch: state.pitches.mainPitch
+    mainPitch: state.pitches.mainPitch,
+    userid: state.user.userid,
+    ...state.comments
   }
 }
 
