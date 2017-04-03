@@ -63,5 +63,5 @@ module.exports.getRecentPitches = () => {
 }
 
 module.exports.getPitchNameAndBlurbByPitchId = (pitchId) => {
-  return db.query(`SELECT name, blurb FROM pitches WHERE id='${pitchId}'`);
+  return db.query(`SELECT name, blurb, timestamp FROM pitches WHERE id='${pitchId}'`);
 }

@@ -30,7 +30,7 @@ class App extends Component {
   render() {
 
     const { comments, pitches } = this.props;
-
+    console.log('pitches in app: ', pitches);
     if (this.props.mainPitch.video && comments.length > 0) {
 
       return (
@@ -39,7 +39,7 @@ class App extends Component {
           <Divider hidden />
           <MainPitchInfo />
           <Divider hidden />
-          <HomeFeed comments={comments} pitches={pitches.pitches}/>
+          <HomeFeed comments={comments} pitches={pitches}/>
           <Divider hidden />
           <TrendingVideos />
         </section>
