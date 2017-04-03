@@ -23,7 +23,7 @@ module.exports.getPitchByPitchId = (pitchId) => {
 };
 //should set the default value of investment status & votes in the table schema
 module.exports.addPitch = (user_id, name, video, website, profile, blurb, category_id)=> {
-  return db.query(`INSERT INTO pitches (user_id, name, video, website, profile, blurb, category_id) VALUES (${user_id}, '${name}', '${video}', '${website}', '${profile}', '${blurb}', '${category_id}')
+  return db.query(`INSERT INTO pitches (user_id, name, video, website, profile, blurb, category_id) VALUES ('${user_id}', '${name}', '${video}', '${website}', '${profile}', '${blurb}', '${category_id}')
     RETURNING id;`);
 };
 //currently by name, later on change to a unique hash we created for the user when pitch was created
